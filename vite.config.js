@@ -8,7 +8,7 @@ export default defineConfig({
     lib: {
       entry: 'src/main.js',
       name: 'MyComponent',
-      fileName: 'my-component',
+      fileName: (format) => `my-component.${format}.js`,
       formats: ['umd']
     }
   }
