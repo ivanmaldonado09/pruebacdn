@@ -1,6 +1,5 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import replace from '@rollup/plugin-replace'; 
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
@@ -9,18 +8,20 @@ export default defineConfig({
       entry: 'src/main.js',
       name: 'MyComponent',
       fileName: format => `my-component.${format}.js`,
-      formats: ['umd'],
+      formats: ['umd']
     },
     rollupOptions: {
-      plugins: [
-        replace({
-          preventAssignment: true,
-          'process.env.NODE_ENV': JSON.stringify('production'),
-        }),
-      ],
+      external: ['vue'],
       output: {
-        globals: { vue: 'Vue' },
-      },
-    },
+        globals: {
+          vue: 'Vue'
+        }
+      }
+    }
   },
-});
+  define: {
+    'process.env.NODE_ENV': '"production"',
+    'process.env': '{}',
+    'process': '{}'
+  }
+})
