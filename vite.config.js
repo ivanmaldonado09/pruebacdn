@@ -8,10 +8,20 @@ export default defineConfig({
       entry: 'src/main.js',
       name: 'MyComponent',
       fileName: format => `my-component.${format}.js`,
-      formats: ['umd'] // también podés incluir 'es', pero UMD es suficiente para CDN
+      formats: ['umd']
     },
     rollupOptions: {
-      external: [], // ❌ NO marcar 'vue' como external
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue'
+        }
+      }
     }
+  },
+  define: {
+    'process.env.NODE_ENV': '"production"',
+    'process.env': '{}',
+    'process': '{}'
   }
 })

@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Prueba Web Component</title>
-  <script src="./dist/my-component.umd.cjs"></script>
+  <!-- Cargar Vue desde CDN primero -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- Luego cargar nuestro componente -->
+  <script src="./dist/my-component.umd.js"></script>
 </head>
 <body>
   <h1>Probando Web Component</h1>
