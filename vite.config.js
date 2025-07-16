@@ -6,11 +6,16 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/components/MyComponent.ce.vue'),
+      entry: path.resolve(__dirname, 'src/components/MyComponent.vue'),
       name: 'MyComponent',
       formats: ['es'],
       fileName: 'my-component'
+    },
+    rollupOptions: {
+      external: [],
+    },
+    commonjsOptions: {
+      include: [/node_modules/]
     }
   }
 })
-
