@@ -1,7 +1,7 @@
 <template>
   <div class="my-component">
     <h2>{{ title }}</h2>
-    <button @click="$emit('onSubmit')">Emitir evento</button>
+    <button @click="$emit('on-submit')">Emitir evento</button>
   </div>
 </template>
 
