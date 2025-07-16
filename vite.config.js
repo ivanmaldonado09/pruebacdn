@@ -10,14 +10,7 @@ export default defineConfig({
       name: 'MyComponent',
       formats: ['es'],
       fileName: 'my-component'
-    },
-    rollupOptions: {
-      external: ['vue'],
-      output: {
-        globals: {
-          vue: 'Vue'
-        }
-      }
     }
   }
 })
+
