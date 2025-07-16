@@ -11,7 +11,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Hola desde MyComponent!'
+      default: 'Hola desde mi componente!'
     }
   }
 }

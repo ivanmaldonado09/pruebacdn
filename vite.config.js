@@ -12,7 +12,7 @@ export default defineConfig({
       fileName: 'my-component'
     },
     rollupOptions: {
-      external: [], // fuerza incluir todo
+      external: [],
     }
   }
 })
