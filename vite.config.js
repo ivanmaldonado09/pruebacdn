@@ -1,14 +1,15 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: 'src/main.js',
+      entry: path.resolve(__dirname, 'src/components/MyComponent.ce.vue'),
       name: 'MyComponent',
-      fileName: format => `my-component.${format}.js`,
-      formats: ['umd']
+      formats: ['es'],
+      fileName: 'my-component'
     },
     rollupOptions: {
       external: ['vue'],
@@ -18,10 +19,5 @@ export default defineConfig({
         }
       }
     }
-  },
-  define: {
-    'process.env.NODE_ENV': '"production"',
-    'process.env': '{}',
-    'process': '{}'
   }
 })
