@@ -4,6 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [vue()],
+  define: {
+    'process.env': {}, // <- evita el error ReferenceError: process is not defined
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/components/MyComponent.vue'),
@@ -13,4 +16,3 @@ export default defineConfig({
     }
   }
 })
-
