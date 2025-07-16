@@ -5,7 +5,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [vue()],
   define: {
-    'process.env': {}, // <- evita el error ReferenceError: process is not defined
+    'process.env': {},
   },
   build: {
     lib: {

@@ -22,4 +22,12 @@ export default {
   border: 2px dashed blue;
   padding: 1rem;
 }
+
+.my-component h2 {
+  color: red !important;
+}
+
+.my-component button {
+  color: green !important;
+}
 </style>

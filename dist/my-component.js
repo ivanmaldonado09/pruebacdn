@@ -1,20 +1,20 @@
 var re = {};
 const W = re.NODE_ENV !== "production" ? Object.freeze({}) : {}, Oe = re.NODE_ENV !== "production" ? Object.freeze([]) : [], ke = () => {
 }, Re = (e) => e.charCodeAt(0) === 111 && e.charCodeAt(1) === 110 && // uppercase letter
-(e.charCodeAt(2) > 122 || e.charCodeAt(2) < 97), z = Object.assign, m = Array.isArray, Ve = (e) => Q(e) === "[object Map]", xe = (e) => Q(e) === "[object Set]", w = (e) => typeof e == "function", b = (e) => typeof e == "string", G = (e) => typeof e == "symbol", N = (e) => e !== null && typeof e == "object", se = Object.prototype.toString, Q = (e) => se.call(e), Fe = (e) => Q(e) === "[object Object]";
+(e.charCodeAt(2) > 122 || e.charCodeAt(2) < 97), z = Object.assign, m = Array.isArray, Ve = (e) => Q(e) === "[object Map]", xe = (e) => Q(e) === "[object Set]", w = (e) => typeof e == "function", E = (e) => typeof e == "string", G = (e) => typeof e == "symbol", N = (e) => e !== null && typeof e == "object", se = Object.prototype.toString, Q = (e) => se.call(e), Fe = (e) => Q(e) === "[object Object]";
 let ne;
 const j = () => ne || (ne = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
 function X(e) {
   if (m(e)) {
     const t = {};
     for (let n = 0; n < e.length; n++) {
-      const o = e[n], s = b(o) ? De(o) : X(o);
+      const o = e[n], s = E(o) ? De(o) : X(o);
       if (s)
         for (const r in s)
           t[r] = s[r];
     }
     return t;
-  } else if (b(e) || N(e))
+  } else if (E(e) || N(e))
     return e;
 }
 const Ie = /;(?![^(]*\))/g, $e = /:([^]+)/, Te = /\/\*[^]*?\*\//g;
@@ -29,7 +29,7 @@ function De(e) {
 }
 function Z(e) {
   let t = "";
-  if (b(e))
+  if (E(e))
     t = e;
   else if (m(e))
     for (let n = 0; n < e.length; n++) {
@@ -41,7 +41,7 @@ function Z(e) {
       e[n] && (t += n + " ");
   return t.trim();
 }
-const ie = (e) => !!(e && e.__v_isRef === !0), ce = (e) => b(e) ? e : e == null ? "" : m(e) || N(e) && (e.toString === se || !w(e.toString)) ? ie(e) ? ce(e.value) : JSON.stringify(e, le, 2) : String(e), le = (e, t) => ie(t) ? le(e, t.value) : Ve(t) ? {
+const ie = (e) => !!(e && e.__v_isRef === !0), ce = (e) => E(e) ? e : e == null ? "" : m(e) || N(e) && (e.toString === se || !w(e.toString)) ? ie(e) ? ce(e.value) : JSON.stringify(e, le, 2) : String(e), le = (e, t) => ie(t) ? le(e, t.value) : Ve(t) ? {
   [`Map(${t.size})`]: [...t.entries()].reduce(
     (n, [o, s], r) => (n[H(o, r) + " =>"] = s, n),
     {}
@@ -78,7 +78,7 @@ function C(e) {
 function v(e) {
   return e ? e.__v_isRef === !0 : !1;
 }
-var a = {};
+var f = {};
 const O = [];
 function Me(e) {
   O.push(e);
@@ -151,13 +151,13 @@ function je({ vnode: e, recurseCount: t }) {
 function He(e) {
   const t = [], n = Object.keys(e);
   return n.slice(0, 3).forEach((o) => {
-    t.push(...fe(o, e[o]));
+    t.push(...ae(o, e[o]));
   }), n.length > 3 && t.push(" ..."), t;
 }
-function fe(e, t, n) {
-  return b(t) ? (t = JSON.stringify(t), n ? t : [`${e}=${t}`]) : typeof t == "number" || typeof t == "boolean" || t == null ? n ? t : [`${e}=${t}`] : v(t) ? (t = fe(e, C(t.value), !0), n ? t : [`${e}=Ref<`, t, ">"]) : w(t) ? [`${e}=fn${t.name ? `<${t.name}>` : ""}`] : (t = C(t), n ? t : [`${e}=`, t]);
+function ae(e, t, n) {
+  return E(t) ? (t = JSON.stringify(t), n ? t : [`${e}=${t}`]) : typeof t == "number" || typeof t == "boolean" || t == null ? n ? t : [`${e}=${t}`] : v(t) ? (t = ae(e, C(t.value), !0), n ? t : [`${e}=Ref<`, t, ">"]) : w(t) ? [`${e}=fn${t.name ? `<${t.name}>` : ""}`] : (t = C(t), n ? t : [`${e}=`, t]);
 }
-const ae = {
+const fe = {
   sp: "serverPrefetch hook",
   bc: "beforeCreate hook",
   c: "created hook",
@@ -201,7 +201,7 @@ function pe(e, t, n, o = !0) {
   const s = t ? t.vnode : null, { errorHandler: r, throwUnhandledErrorInProduction: c } = t && t.appContext.config || W;
   if (t) {
     let l = t.parent;
-    const u = t.proxy, g = a.NODE_ENV !== "production" ? ae[n] : `https://vuejs.org/error-reference/#runtime-${n}`;
+    const u = t.proxy, g = f.NODE_ENV !== "production" ? fe[n] : `https://vuejs.org/error-reference/#runtime-${n}`;
     for (; l; ) {
       const y = l.ec;
       if (y) {
@@ -223,8 +223,8 @@ function pe(e, t, n, o = !0) {
   Ue(e, n, s, o, c);
 }
 function Ue(e, t, n, o = !0, s = !1) {
-  if (a.NODE_ENV !== "production") {
-    const r = ae[t];
+  if (f.NODE_ENV !== "production") {
+    const r = fe[t];
     if (n && Me(n), x(`Unhandled error${r ? ` during execution of ${r}` : ""}`), n && Pe(), o)
       throw e;
     console.error(e);
@@ -237,7 +237,7 @@ function Ue(e, t, n, o = !0, s = !1) {
 const d = [];
 let S = -1;
 const R = [];
-let E = null, k = 0;
+let b = null, k = 0;
 const Je = /* @__PURE__ */ Promise.resolve();
 let Y = null;
 const Be = 100;
@@ -260,33 +260,33 @@ function de() {
   Y || (Y = Je.then(me));
 }
 function Ke(e) {
-  m(e) ? R.push(...e) : E && e.id === -1 ? E.splice(k + 1, 0, e) : e.flags & 1 || (R.push(e), e.flags |= 1), de();
+  m(e) ? R.push(...e) : b && e.id === -1 ? b.splice(k + 1, 0, e) : e.flags & 1 || (R.push(e), e.flags |= 1), de();
 }
 function Le(e) {
   if (R.length) {
     const t = [...new Set(R)].sort(
       (n, o) => F(n) - F(o)
     );
-    if (R.length = 0, E) {
-      E.push(...t);
+    if (R.length = 0, b) {
+      b.push(...t);
       return;
     }
-    for (E = t, a.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map()), k = 0; k < E.length; k++) {
-      const n = E[k];
-      a.NODE_ENV !== "production" && he(e, n) || (n.flags & 4 && (n.flags &= -2), n.flags & 8 || n(), n.flags &= -2);
+    for (b = t, f.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map()), k = 0; k < b.length; k++) {
+      const n = b[k];
+      f.NODE_ENV !== "production" && he(e, n) || (n.flags & 4 && (n.flags &= -2), n.flags & 8 || n(), n.flags &= -2);
     }
-    E = null, k = 0;
+    b = null, k = 0;
   }
 }
 const F = (e) => e.id == null ? e.flags & 2 ? -1 : 1 / 0 : e.id;
 function me(e) {
-  a.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map());
-  const t = a.NODE_ENV !== "production" ? (n) => he(e, n) : ke;
+  f.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map());
+  const t = f.NODE_ENV !== "production" ? (n) => he(e, n) : ke;
   try {
     for (S = 0; S < d.length; S++) {
       const n = d[S];
       if (n && !(n.flags & 8)) {
-        if (a.NODE_ENV !== "production" && t(n))
+        if (f.NODE_ENV !== "production" && t(n))
           continue;
         n.flags & 4 && (n.flags &= -2), ee(
           n,
@@ -306,7 +306,7 @@ function me(e) {
 function he(e, t) {
   const n = e.get(t) || 0;
   if (n > Be) {
-    const o = t.i, s = o && Ee(o.type);
+    const o = t.i, s = o && be(o.type);
     return pe(
       `Maximum recursive updates exceeded${s ? ` in component <${s}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`,
       null,
@@ -316,7 +316,7 @@ function he(e, t) {
   return e.set(t, n + 1), !1;
 }
 const B = /* @__PURE__ */ new Map();
-a.NODE_ENV !== "production" && (j().__VUE_HMR_RUNTIME__ = {
+f.NODE_ENV !== "production" && (j().__VUE_HMR_RUNTIME__ = {
   createRecord: q(Ye),
   rerender: q(Ge),
   reload: q(Qe)
@@ -379,7 +379,7 @@ function ge(e, t) {
 j().requestIdleCallback;
 j().cancelIdleCallback;
 const ve = Symbol.for("v-ndc"), et = {};
-a.NODE_ENV !== "production" && (et.ownKeys = (e) => (x(
+f.NODE_ENV !== "production" && (et.ownKeys = (e) => (x(
   "Avoid app logic that relies on enumerating keys on a component instance. The keys will be empty in production mode to avoid performance overhead."
 ), Reflect.ownKeys(e)));
 const tt = {}, _e = (e) => Object.getPrototypeOf(e) === tt, nt = (e) => e.__isSuspense, ye = Symbol.for("v-fgt"), ot = Symbol.for("v-txt"), rt = Symbol.for("v-cmt"), I = [];
@@ -409,13 +409,13 @@ function lt(e, t, n, o, s, r) {
 function ut(e) {
   return e ? e.__v_isVNode === !0 : !1;
 }
-const ft = (...e) => Ne(
+const at = (...e) => Ne(
   ...e
 ), Se = ({ key: e }) => e ?? null, $ = ({
   ref: e,
   ref_key: t,
   ref_for: n
-}) => (typeof e == "number" && (e = "" + e), e != null ? b(e) || v(e) || w(e) ? { i: M, r: e, k: t, f: !!n } : e : null);
+}) => (typeof e == "number" && (e = "" + e), e != null ? E(e) || v(e) || w(e) ? { i: M, r: e, k: t, f: !!n } : e : null);
 function P(e, t = null, n = null, o = 0, s = null, r = e === ye ? 0 : 1, c = !1, l = !1) {
   const u = {
     __v_isVNode: !0,
@@ -446,7 +446,7 @@ function P(e, t = null, n = null, o = 0, s = null, r = e === ye ? 0 : 1, c = !1,
     appContext: null,
     ctx: M
   };
-  return l ? (te(u, n), r & 128 && e.normalize(u)) : n && (u.shapeFlag |= b(n) ? 8 : 16), a.NODE_ENV !== "production" && u.key !== u.key && x("VNode created with invalid key (NaN). VNode type:", u.type), // avoid a block node from tracking itself
+  return l ? (te(u, n), r & 128 && e.normalize(u)) : n && (u.shapeFlag |= E(n) ? 8 : 16), f.NODE_ENV !== "production" && u.key !== u.key && x("VNode created with invalid key (NaN). VNode type:", u.type), // avoid a block node from tracking itself
   !c && // has current parent block
   h && // presence of a patch flag indicates this node needs patching on updates.
   // component nodes also should always be patched, because even if the
@@ -456,9 +456,9 @@ function P(e, t = null, n = null, o = 0, s = null, r = e === ye ? 0 : 1, c = !1,
   // vnode should not be considered dynamic due to handler caching.
   u.patchFlag !== 32 && h.push(u), u;
 }
-const at = a.NODE_ENV !== "production" ? ft : Ne;
+const ft = f.NODE_ENV !== "production" ? at : Ne;
 function Ne(e, t = null, n = null, o = 0, s = null, r = !1) {
-  if ((!e || e === ve) && (a.NODE_ENV !== "production" && !e && x(`Invalid vnode type when creating vnode: ${e}.`), e = rt), ut(e)) {
+  if ((!e || e === ve) && (f.NODE_ENV !== "production" && !e && x(`Invalid vnode type when creating vnode: ${e}.`), e = rt), ut(e)) {
     const l = A(
       e,
       t,
@@ -470,10 +470,10 @@ function Ne(e, t = null, n = null, o = 0, s = null, r = !1) {
   if (Ce(e) && (e = e.__vccOpts), t) {
     t = pt(t);
     let { class: l, style: u } = t;
-    l && !b(l) && (t.class = Z(l)), N(u) && (L(u) && !m(u) && (u = z({}, u)), t.style = X(u));
+    l && !E(l) && (t.class = Z(l)), N(u) && (L(u) && !m(u) && (u = z({}, u)), t.style = X(u));
   }
-  const c = b(e) ? 1 : nt(e) ? 128 : Ze(e) ? 64 : N(e) ? 4 : w(e) ? 2 : 0;
-  return a.NODE_ENV !== "production" && c & 4 && L(e) && (e = C(e), x(
+  const c = E(e) ? 1 : nt(e) ? 128 : Ze(e) ? 64 : N(e) ? 4 : w(e) ? 2 : 0;
+  return f.NODE_ENV !== "production" && c & 4 && L(e) && (e = C(e), x(
     "Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`.",
     `
 Component that was made reactive: `,
@@ -507,7 +507,7 @@ function A(e, t, n = !1, o = !1) {
     ) : r,
     scopeId: e.scopeId,
     slotScopeIds: e.slotScopeIds,
-    children: a.NODE_ENV !== "production" && c === -1 && m(l) ? l.map(be) : l,
+    children: f.NODE_ENV !== "production" && c === -1 && m(l) ? l.map(Ee) : l,
     target: e.target,
     targetStart: e.targetStart,
     targetAnchor: e.targetAnchor,
@@ -541,12 +541,12 @@ function A(e, t, n = !1, o = !1) {
     u.clone(y)
   ), y;
 }
-function be(e) {
+function Ee(e) {
   const t = A(e);
-  return m(e.children) && (t.children = e.children.map(be)), t;
+  return m(e.children) && (t.children = e.children.map(Ee)), t;
 }
 function dt(e = " ", t = 0) {
-  return at(ot, null, e, t);
+  return ft(ot, null, e, t);
 }
 function te(e, t) {
   let n = 0;
@@ -597,11 +597,11 @@ function mt(...e) {
   );
 }
 const ht = /(?:^|[-_])(\w)/g, gt = (e) => e.replace(ht, (t) => t.toUpperCase()).replace(/[-_]/g, "");
-function Ee(e, t = !0) {
+function be(e, t = !0) {
   return w(e) ? e.displayName || e.name : e.name || t && e.__name;
 }
 function we(e, t, n = !1) {
-  let o = Ee(t);
+  let o = be(t);
   if (!o && t.__file) {
     const s = t.__file.match(/([^/\\]+)\.\w+$/);
     s && (o = s[1]);
@@ -622,7 +622,7 @@ function Ce(e) {
   return w(e) && "__vccOpts" in e;
 }
 function _t() {
-  if (a.NODE_ENV === "production" || typeof window > "u")
+  if (f.NODE_ENV === "production" || typeof window > "u")
     return;
   const e = { style: "color:#3ba776" }, t = { style: "color:#1677ff" }, n = { style: "color:#f5222d" }, o = { style: "color:#eb2f96" }, s = {
     __vue_custom_formatter: !0,
@@ -632,13 +632,13 @@ function _t() {
       if (i.__isVue)
         return ["div", e, "VueInstance"];
       if (v(i)) {
-        const f = i.value;
+        const a = i.value;
         return [
           "div",
           {},
           ["span", e, y(i)],
           "<",
-          l(f),
+          l(a),
           ">"
         ];
       } else {
@@ -676,12 +676,12 @@ function _t() {
     }
   };
   function r(i) {
-    const f = [];
-    i.type.props && i.props && f.push(c("props", C(i.props))), i.setupState !== W && f.push(c("setup", i.setupState)), i.data !== W && f.push(c("data", C(i.data)));
+    const a = [];
+    i.type.props && i.props && a.push(c("props", C(i.props))), i.setupState !== W && a.push(c("setup", i.setupState)), i.data !== W && a.push(c("data", C(i.data)));
     const p = u(i, "computed");
-    p && f.push(c("computed", p));
+    p && a.push(c("computed", p));
     const _ = u(i, "inject");
-    return _ && f.push(c("injected", _)), f.push([
+    return _ && a.push(c("injected", _)), a.push([
       "div",
       {},
       [
@@ -692,10 +692,10 @@ function _t() {
         "$ (internal): "
       ],
       ["object", { object: i }]
-    ]), f;
+    ]), a;
   }
-  function c(i, f) {
-    return f = z({}, f), Object.keys(f).length ? [
+  function c(i, a) {
+    return a = z({}, a), Object.keys(a).length ? [
       "div",
       { style: "line-height:1.25em;margin-bottom:0.6em" },
       [
@@ -710,30 +710,30 @@ function _t() {
         {
           style: "padding-left:1.25em"
         },
-        ...Object.keys(f).map((p) => [
+        ...Object.keys(a).map((p) => [
           "div",
           {},
           ["span", o, p + ": "],
-          l(f[p], !1)
+          l(a[p], !1)
         ])
       ]
     ] : ["span", {}];
   }
-  function l(i, f = !0) {
-    return typeof i == "number" ? ["span", t, i] : typeof i == "string" ? ["span", n, JSON.stringify(i)] : typeof i == "boolean" ? ["span", o, i] : N(i) ? ["object", { object: f ? C(i) : i }] : ["span", n, String(i)];
+  function l(i, a = !0) {
+    return typeof i == "number" ? ["span", t, i] : typeof i == "string" ? ["span", n, JSON.stringify(i)] : typeof i == "boolean" ? ["span", o, i] : N(i) ? ["object", { object: a ? C(i) : i }] : ["span", n, String(i)];
   }
-  function u(i, f) {
+  function u(i, a) {
     const p = i.type;
     if (w(p))
       return;
     const _ = {};
     for (const V in i.ctx)
-      g(p, V, f) && (_[V] = i.ctx[V]);
+      g(p, V, a) && (_[V] = i.ctx[V]);
     return _;
   }
-  function g(i, f, p) {
+  function g(i, a, p) {
     const _ = i[p];
-    if (m(_) && _.includes(f) || N(_) && f in _ || i.extends && g(i.extends, f, p) || i.mixins && i.mixins.some((V) => g(V, f, p)))
+    if (m(_) && _.includes(a) || N(_) && a in _ || i.extends && g(i.extends, a, p) || i.mixins && i.mixins.some((V) => g(V, a, p)))
       return !0;
   }
   function y(i) {
@@ -751,7 +751,7 @@ const Nt = (e, t) => {
   for (const [o, s] of t)
     n[o] = s;
   return n;
-}, bt = {
+}, Et = {
   name: "MyComponent",
   props: {
     title: {
@@ -759,16 +759,16 @@ const Nt = (e, t) => {
       default: "Hola desde mi componente!"
     }
   }
-}, Et = { class: "my-component" };
+}, bt = { class: "my-component" };
 function wt(e, t, n, o, s, r) {
-  return st(), lt("div", Et, [
+  return st(), lt("div", bt, [
     P("h2", null, ce(n.title), 1),
     P("button", {
       onClick: t[0] || (t[0] = (c) => e.$emit("on-submit"))
     }, "Emitir evento")
   ]);
 }
-const Ct = /* @__PURE__ */ Nt(bt, [["render", wt], ["__scopeId", "data-v-0b4c6bdf"]]);
+const Ct = /* @__PURE__ */ Nt(Et, [["render", wt], ["__scopeId", "data-v-04e536c2"]]);
 export {
   Ct as default
 };
